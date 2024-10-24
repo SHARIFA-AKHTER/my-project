@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-const Recipes = () => {
+const Recipes = ({ addRecipeQueue }) => {
     const [recipes, setRecipes] = useState([])
     useEffect( () =>{
         fetch('./recipes.json')
@@ -8,7 +8,6 @@ const Recipes = () => {
         .then(data=>setRecipes(data))
     },[])
 
-    console.log(recipes)
     return (
         <div className="md:w-2/3">  
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -48,8 +47,10 @@ const Recipes = () => {
                 </div>
                 
             <div className="card-actions ">
-              <button className="btn bg-green-400 rounded-full 
-              px-8 text-xl text-gray-800 mt-6 font-medium"> Want to Cook </button>
+              <button onClick={() => addRecipeQueue(recipe)} className="btn bg-green-400 rounded-full 
+              px-8 text-xl text-gray-800 mt-6 font-medium">
+                 Want to Cook 
+                 </button>
             </div>
           </div>
                     
